@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="UTF-8" />
-  <title>Evershine Plastics	- GST Invoice</title>
+  <title>Evershine Ladies Tailoring	- GST Invoice</title>
   <style>
     /* Basic styling */
     body {
@@ -332,12 +332,18 @@
 
   <!-- Title -->
   <div style="flex: 3; text-align: center;">
-    <h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: 1px; color: #fff;">
-      <span style="font-size: 40px;">E</span>vershine Plastics<span style="font-size: 40px;"></span>
-    </h1>
-    <p style="margin: 0; font-size: 14px;">📍 No.74/9, M.L.S. Complex, Singarathopu, Trichy – 620008</p>
-    <p style="margin: 0; font-size: 14px;">📞 9443645996 / 9788213912 | ☎ 0431-2703130</p>
-  </div>
+  <h1 style="margin: 0; font-size: px; font-weight: 800; letter-spacing: 1px; color: #fff;">
+    <span style="font-size: 40px;">E</span>vershine Ladies Tailoring
+  </h1>
+  <p style="margin: 2px 0; font-size: 14px; white-space: nowrap;">
+    📍 No. 3, Madurai Road (Opp. Holy Cross College), Trichy – 620008
+  </p>
+  <p style="margin: 2px 0; font-size: 14px;">
+    📞 87785 89983 | 94436 45996
+  </p>
+</div>
+
+
 
   <!-- Right Empty or Add Tagline -->
   <div style="flex: 1; text-align: right;">
@@ -376,39 +382,31 @@
 
     
     <!-- Items Table -->
-    <div class="box">
+<div class="box">
   <table id="itemsTable" style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-top: 20px;">
-  <thead style="background-color: #e3f2fd; color: #003366;">
-    <tr>
-      <th style="border: 1px solid #ccc; padding: 8px;">Item</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">HSN</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">Qty</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">Rate (₹)</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">Amount (₹)</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">CGST %</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">SGST %</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">IGST %</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">Total (₹)</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Product Name"></td>
-      <td style="pointer-events: none; background-color: #f0f0f0; border: 1px solid #ccc; text-align: center;">3926</td>
-      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Quantity"></td>
-      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Rate"></td>
-      <td class="amount" contenteditable="false" style="border: 1px solid #ccc; text-align: right;">0.00</td>
-      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter CGST %"></td>
-      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter SGST %"></td>
-      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter IGST %"></td>
-      <td class="total" contenteditable="false" style="border: 1px solid #ccc; text-align: right;">0.00</td>
-      <td style="border: 1px solid #ccc; text-align: center;">
-        <button class="delete-btn" onclick="deleteRow(this)" title="Delete Row" style="background: red; color: white; border: none; padding: 5px 10px;">X</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <thead style="background-color: #e3f2fd; color: #003366;">
+      <tr>
+        <th style="border: 1px solid #ccc; padding: 8px;">Item</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Qty</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Rate (₹)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Amount (₹)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Total (₹)</th>
+        <th style="border: 1px solid #ccc; padding: 8px;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Product Name"></td>
+        <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Quantity"></td>
+        <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Rate"></td>
+        <td class="amount" contenteditable="false" style="border: 1px solid #ccc; text-align: right;">0.00</td>
+        <td class="total" contenteditable="false" style="border: 1px solid #ccc; text-align: right;">0.00</td>
+        <td style="border: 1px solid #ccc; text-align: center;">
+          <button class="delete-btn" onclick="deleteRow(this)" title="Delete Row" style="background: red; color: white; border: none; padding: 5px 10px;">X</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <button class="add-btn" onclick="addRow()">+ Add Item</button>
 </div>
@@ -416,9 +414,6 @@
     <!-- Totals Section -->
     <div class="box totals">
   <p>Sub Total: <input type="number" id="subTotal" value="0" readonly /></p>
-  <p>CGST Total: <input type="number" id="cgstTotal" value="0" readonly /></p>
-  <p>SGST Total: <input type="number" id="sgstTotal" value="0" readonly /></p>
-  <p>IGST Total: <input type="number" id="igstTotal" value="0" readonly /></p> <!-- ✅ IGST Added -->
   <p>Grand Total: <input type="number" id="grandTotal" value="0" readonly /></p>
   <p><strong>Total in Words:</strong> <span id="totalInWords"></span></p>
 </div>
@@ -449,10 +444,6 @@
   </div>
 </div>
   <section id="invoicePrint" aria-hidden="true" style="color: #003366; font-family: 'Arial', sans-serif;">
- <!-- Full Header Section -->
-<!-- 🖼️ Top Centered Logo -->
-
-
 <!-- 🔳 Invoice Header Section -->
 <div style="display: flex; justify-content: space-between; align-items: center;
   font-family: Arial, sans-serif; background: #ffffff; padding: 10px 20px;
@@ -461,41 +452,31 @@
   <!-- LEFT: State / PAN -->
   <div style="width: 25%; font-size: 13px; color: #000;">
   <div style="white-space: nowrap;"><strong>State Name:</strong> Tamil Nadu - 33</div>
-  <div style="white-space: nowrap;"><strong>GSTIN No. :</strong> 33AFEPA0003N1Z6</div>
-  <div style="white-space: nowrap;"><strong>PAN No :</strong> AFEPA0003N</div>
-
   </div>
+
   <!-- CENTER: Company Info -->
   <div style="width: 50%; text-align: center;">
-  <div style="background: #000; color: white; display: inline-block; padding: 2px 10px;
-              font-size: 12px; margin-bottom: 5px;">GST INVOICE</div>
+    <div style="background: #000; color: white; display: inline-block; padding: 2px 10px;
+                font-size: 12px; margin-bottom: 5px;">GST INVOICE</div>
 
-  <h2 style="margin: 5px 0; font-size: 30px; font-weight: bold; line-height: 1.2;">
-    <div>
+    <h2 style="margin: 5px 0; font-size: 30px; font-weight: bold; line-height: 1.2;">
       <span style="font-size: 42px; font-family: Georgia, serif; vertical-align: middle; color: #004d99; margin-right: -10px;">E</span>
       <span style="position: relative; top: 5px; letter-spacing: 2px; color: #003366;">vershin</span>
       <span style="font-size: 42px; font-family: Georgia, serif; vertical-align: middle; color: #004d99; display: inline-block; transform: scaleX(-1); margin-left: -10px;">E</span>
-    </div>
-  <span style="color: #004d99; font-size: 24px; margin-left: 10px; font-family: Arial, sans-serif;">PLASTICS</span>
-</h2>
-    <div style="font-size: 13px; white-space: nowrap;">📍 No.74/9, M.L.S. Complex Singarathopu,Trichy – 620008</div>
+      <span style="color: #004d99; font-size: 24px; font-family: Arial, sans-serif;">Ladies Tailoring</span>
+    </h2>
 
+    <div style="font-size: 13px; white-space: nowrap;">📍 No.3, Madurai Road (Opp. Holy Cross College), Trichy – 620008</div>
     <div style="font-size: 13px; color: #004080;">s.ameerevershine@yahoo.com</div>
   </div>
 
   <!-- RIGHT: Contact -->
-  <div style="font-size: 13px; color: #000; text-align: right;">
-    <div><strong>Phone :</strong> 0431-2708130</div>
+  <div style="width: 25%; font-size: 13px; color: #000; text-align: right;">
+    <div><strong>Phone:</strong> 0431-2708130</div>
     <div><strong>Mobile:</strong> 94436 45996</div>
-    <div><strong>Mobile:</strong> 88258 74788</div>
-
+    <div><strong>Mobile:</strong> 87785 89983</div>
   </div>
 </div>
-
-
-
-
-
 
 
 <!-- Customer + Invoice Info -->
@@ -509,7 +490,7 @@
 
   <span id="pr_customerAddress"></span><br />
   <strong>State Name & Code:</strong> <span id="pr_stateName">Tamil Nadu</span> - <span id="pr_stateCode">33</span><br />
-  <strong>GSTIN:</strong> <span id="pr_gstinSeller">33AFEPA0003N1Z6</span><br />
+  <strong>GSTIN:</strong> <span id="pr_gstinSeller">33GJHPSS6623F1Z1</span><br />
   <strong>PAN No:</strong> <span id="pr_panNo">AFEPA0003N</span><br /><br />
 
 </td>
@@ -563,18 +544,15 @@
   <!-- Items -->
   <table class="items" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
   <thead style="background-color: #f2f2f2;">
-    <tr style="border: 1px solid #ccc;">
-      <th>Item</th>
-      <th>HSN</th>
-      <th>Qty</th>
-      <th>Rate (₹)</th>
-      <th>Amount (₹)</th>
-      <th>CGST %</th>
-      <th>SGST %</th>
-      <th>IGST %</th> <!-- ✅ New IGST Column -->
-      <th>Total (₹)</th>
-    </tr>
-  </thead>
+  <tr style="border: 1px solid #ccc;">
+    <th>Item</th>
+    <th>Qty</th>
+    <th>Rate (₹)</th>
+    <th>Amount (₹)</th>
+    <th>Total (₹)</th>
+  </tr>
+</thead>
+
   <tbody id="pr_itemsBody" style="text-align: center;">
     <!-- Rows inserted dynamically -->
   </tbody>
@@ -588,24 +566,6 @@
       <td style="text-align: right; padding: 8px;">Sub Total:</td>
       <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
         ₹ <span id="pr_subTotal"></span>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align: right; padding: 8px;">CGST Total:</td>
-      <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
-        ₹ <span id="pr_cgstTotal"></span>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align: right; padding: 8px;">SGST Total:</td>
-      <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
-        ₹ <span id="pr_sgstTotal"></span>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align: right; padding: 8px;">IGST Total:</td> <!-- ✅ NEW IGST Row -->
-      <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
-        ₹ <span id="pr_igstTotal"></span>
       </td>
     </tr>
 
@@ -623,26 +583,25 @@
     </tr>
   </tbody>
 </table>
-
-
- <!-- Bank & Signature Row -->
+<!-- Bank & Signature Row -->
 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-top: 20px;">
 
   <!-- Bank Details (Left) -->
   <div style="flex: 1; text-align: left; font-size: 12px; color: #333; background: #ffffff; border-radius: 8px; padding: 10px 15px; border: 1px solid #d9e6f2;">
     <p style="margin: 4px 0; font-size: 12px;"><span style="font-weight: bold;">Bank Name:</span> KARNATAKA BANK</p>
-    <p style="margin: 4px 0; font-size: 12px;"><span style="font-weight: bold;">Account No:</span> 7617000600109401</p>
+    <p style="margin: 4px 0; font-size: 12px;"><span style="font-weight: bold;">Account No:</span> 7612500101832501</p>
     <p style="margin: 4px 0; font-size: 12px;"><span style="font-weight: bold;">IFSC Code:</span> KARB0000761</p>
   </div>
 
   <!-- Authorized Signature (Right) -->
   <div style="flex: 1; text-align: right;">
-    <div style="font-weight: bold; margin-bottom: 10px;">For Evershine Plastics</div>
+    <div style="font-weight: bold; margin-bottom: 10px;">For Evershine Ladies Tailoring</div>
     <img src="evershine.png" alt="Authorized Signature" style="max-height: 80px;" />
     <div>Authorized Signatory</div>
   </div>
 
 </div>
+
 </section>
 
     <script>
@@ -701,23 +660,22 @@
 
 <script>
   // Add new item row
-  function addRow() {
+ function addRow() {
   const tbody = document.querySelector('#itemsTable tbody');
   const row = document.createElement('tr');
   row.innerHTML = `
     <td contenteditable data-placeholder="Enter Product Name"></td>
-    <td style="pointer-events: none; background-color: #f0f0f0;">3926</td> <!-- Fixed HSN -->
     <td contenteditable data-placeholder="Enter Quantity"></td>
     <td contenteditable data-placeholder="Enter Rate"></td>
     <td class="amount" contenteditable="false"></td>
-    <td contenteditable data-placeholder="Enter CGST %"></td>
-    <td contenteditable data-placeholder="Enter SGST %"></td>
-    <td contenteditable data-placeholder="Enter IGST %"></td> <!-- ✅ IGST Added -->
     <td class="total" contenteditable="false"></td>
-    <td><button class="delete-btn" onclick="deleteRow(this)" title="Delete Row">X</button></td>
+    <td>
+      <button class="delete-btn" onclick="deleteRow(this)" title="Delete Row" style="background: red; color: white; border: none; padding: 5px 10px;">X</button>
+    </td>
   `;
   tbody.appendChild(row);
 }
+
 
 
 
@@ -728,57 +686,41 @@
     calculateTotals();
   }
 
-  function isValidNumber(value) {
-    return !isNaN(value) && value >= 0;
-  }
+  function isValidNumber(n) {
+  return typeof n === 'number' && !isNaN(n) && isFinite(n);
+}
 
-  function calculateTotals() {
-  let subTotal = 0, cgstTotal = 0, sgstTotal = 0, igstTotal = 0, grandTotal = 0;
+function calculateTotals() {
+  let subTotal = 0, grandTotal = 0;
 
   const rows = document.querySelectorAll('#itemsTable tbody tr');
   rows.forEach(row => {
-    const qty = parseFloat(row.cells[2].innerText) || 0;
-    const rate = parseFloat(row.cells[3].innerText) || 0;
-    const cgstPercent = parseFloat(row.cells[5].innerText) || 0;
-    const sgstPercent = parseFloat(row.cells[6].innerText) || 0;
-    const igstPercent = parseFloat(row.cells[7].innerText) || 0;
+    const qty = parseFloat(row.cells[1].innerText) || 0;
+    const rate = parseFloat(row.cells[2].innerText) || 0;
 
-    if (![qty, rate].every(isValidNumber)) {
-      row.querySelector('.amount').innerText = '';
-      row.querySelector('.total').innerText = '';
+    if (!isValidNumber(qty) || !isValidNumber(rate)) {
+      if (row.querySelector('.amount')) row.querySelector('.amount').innerText = '';
+      if (row.querySelector('.total')) row.querySelector('.total').innerText = '';
       return;
     }
 
     const amount = qty * rate;
-    const cgstAmount = (amount * cgstPercent) / 100;
-    const sgstAmount = (amount * sgstPercent) / 100;
-    const igstAmount = (amount * igstPercent) / 100;
+    const total = amount; // no GST
 
-    const total = amount + cgstAmount + sgstAmount + igstAmount;
-
-    row.querySelector('.amount').innerText = amount.toFixed(2);
-    row.querySelector('.total').innerText = total.toFixed(2);
+    if (row.querySelector('.amount')) row.querySelector('.amount').innerText = amount.toFixed(2);
+    if (row.querySelector('.total')) row.querySelector('.total').innerText = total.toFixed(2);
 
     subTotal += amount;
-    cgstTotal += cgstAmount;
-    sgstTotal += sgstAmount;
-    igstTotal += igstAmount;
     grandTotal += total;
   });
 
   document.getElementById('subTotal').value = subTotal.toFixed(2);
-  document.getElementById('cgstTotal').value = cgstTotal.toFixed(2);
-  document.getElementById('sgstTotal').value = sgstTotal.toFixed(2);
-
-  // 👉 Add this only if you have IGST field in the totals section
-  const igstTotalField = document.getElementById('igstTotal');
-  if (igstTotalField) {
-    igstTotalField.value = igstTotal.toFixed(2);
-  }
-
   document.getElementById('grandTotal').value = grandTotal.toFixed(2);
   document.getElementById('totalInWords').innerText = convertNumberToWords(grandTotal);
 }
+
+
+
 
 
 
@@ -794,8 +736,7 @@
       'invoiceNo', 'invoiceDate', 'placeOfSupply', 'gstinSeller', 'panNo',
       'customerEmail', 'customerName', 'customerAddress', 'customerState',
       'gstinBuyer', 'customerMobile', 'stateName', 'stateCode',
-      'subTotal', 'cgstTotal', 'sgstTotal', 'igstTotal', 'grandTotal',
-      'orderNo', 'challanNo', 'transportMode', 'paymentType'
+      'subTotal', 'grandTotal', 'orderNo', 'challanNo', 'transportMode', 'paymentType'
     ].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.value = '';
@@ -810,7 +751,8 @@
 
 
 
-  function saveInvoiceToLocal() {
+
+ function saveInvoiceToLocal() {
   try {
     const invoiceData = {
       invoiceNo: document.getElementById('invoiceNo')?.value || '',
@@ -831,34 +773,25 @@
       items: [],
       totals: {
         subTotal: document.getElementById('subTotal')?.value || '0',
-        cgstTotal: document.getElementById('cgstTotal')?.value || '0',
-        sgstTotal: document.getElementById('sgstTotal')?.value || '0',
-        igstTotal: document.getElementById('igstTotal')?.value || '0',
         grandTotal: document.getElementById('grandTotal')?.value || '0'
       }
     };
 
-    // ✅ Loop through invoice items
     const rows = document.querySelectorAll('#itemsTable tbody tr');
     rows.forEach(row => {
       const cells = row.querySelectorAll('td');
       invoiceData.items.push({
-        item: cells[0]?.innerText.trim() || '',
-        hsn: cells[1]?.innerText.trim() || '',
-        qty: cells[2]?.innerText.trim() || '',
-        rate: cells[3]?.innerText.trim() || '',
-        amount: cells[4]?.innerText.trim() || '',
-        cgst: cells[5]?.innerText.trim() || '',
-        sgst: cells[6]?.innerText.trim() || '',
-        igst: cells[7]?.innerText.trim() || '',
-        total: cells[8]?.innerText.trim() || ''
-      });
+  item: cells[0]?.innerText.trim() || '',
+  qty: cells[1]?.innerText.trim() || '',
+  rate: cells[2]?.innerText.trim() || '',
+  amount: cells[3]?.innerText.trim() || '',
+  total: cells[4]?.innerText.trim() || ''
+});
+
     });
 
-    // ✅ Save to LocalStorage
     localStorage.setItem('savedInvoice', JSON.stringify(invoiceData));
 
-    // ✅ Update bill history
     let billHistory = JSON.parse(localStorage.getItem('billHistory')) || [];
     billHistory.push({
       invoiceNo: invoiceData.invoiceNo,
@@ -869,15 +802,11 @@
       challanNo: invoiceData.challanNo,
       transportMode: invoiceData.transportMode,
       items: invoiceData.items,
-      cgstTotal: invoiceData.totals.cgstTotal,
-      sgstTotal: invoiceData.totals.sgstTotal,
-      igstTotal: invoiceData.totals.igstTotal,
       grandTotal: invoiceData.totals.grandTotal,
       paymentType: invoiceData.paymentType
     });
 
     localStorage.setItem("billHistory", JSON.stringify(billHistory));
-
     alert('✅ Invoice saved locally and added to history!');
   } catch (err) {
     console.error("❌ Error saving invoice:", err);
@@ -960,7 +889,7 @@ function generateInvoiceEmail() {
   const itemName = firstRow.cells[0].innerText.trim() || 'N/A';
   const qty = firstRow.cells[2].innerText.trim() || 'N/A';
   const rate = firstRow.cells[3].innerText.trim() || 'N/A';
-  const total = firstRow.cells[7].innerText.trim() || 'N/A';
+const total = firstRow.cells[4].innerText.trim() || 'N/A';
 
   const message = `
 Dear ${customerName},
@@ -1027,7 +956,7 @@ if (!body) return;
 body.innerHTML = '';
 
 document.querySelectorAll('#itemsTable tbody tr').forEach(row => {
-  const cells = Array.from(row.cells).slice(0, -1).map(cell => cell.innerText.trim()); // 👈 skip last column
+const cells = Array.from(row.cells).slice(0, -1).map(cell => cell.innerText.trim());
   if (!cells[0]) return; // skip empty rows
   const tr = document.createElement('tr');
   tr.innerHTML = cells.map(cell => `<td>${cell || ''}</td>`).join('');
