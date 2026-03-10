@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8" />
-  <title>Evershine Plastics	- GST Invoice</title>
+  <title>Evershine Plastics - GST Invoice</title>
   <style>
     /* Basic styling */
     body {
@@ -325,12 +324,10 @@
 </head>
 <body>
   <div style="background: linear-gradient(to right, #003366, #0077cc); color: white; padding: 15px 25px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: space-between;">
-  <!-- Logo -->
   <div style="flex: 1;">
     <img src="Logo.png" alt="Evershine Plastics" style="height: 80px; border-radius: 6px;" />
   </div>
 
-  <!-- Title -->
   <div style="flex: 3; text-align: center;">
     <h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: 1px; color: #fff;">
       <span style="font-size: 40px;">E</span>vershine Plastics<span style="font-size: 40px;"></span>
@@ -339,7 +336,6 @@
     <p style="margin: 0; font-size: 14px;">📞 9443645996 / 9788213912 | ☎ 0431-2703130</p>
   </div>
 
-  <!-- Right Empty or Add Tagline -->
   <div style="flex: 1; text-align: right;">
     <span style="font-size: 12px; color: #cceaff;">GST Invoice</span>
   </div>
@@ -347,8 +343,7 @@
 
   
   <div class="container">
-    <!-- Invoice Details -->
-<div class="box flex-row" style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <div class="box flex-row" style="display: flex; flex-wrap: wrap; gap: 10px;">
   <label>Invoice No:<input id="invoiceNo" type="text" placeholder="INV12345" /></label>
   <label>Date:<input id="invoiceDate" type="datetime-local" /></label>
   <label>State Name:<input id="stateName" type="text" value="Tamil Nadu" placeholder="Tamil Nadu" /></label>
@@ -361,12 +356,10 @@
   <label>Challan No:<input id="challanNo" type="text" placeholder="CHL67890" /></label>
   <label>Transport Mode:<input id="transportMode" type="text" placeholder="Road / Air / Rail" /></label>
   
-  <!-- ✅ New Fields -->
   <label>Date & Time of Supply:<input id="supplyDateTime" type="datetime-local" /></label>
   <label>Vehicle No:<input id="vehicleNo" type="text" placeholder="TN-01-AB-1234" /></label>
 </div>
 
-<!-- Customer Details -->
 <div class="box flex-row" style="display: flex; flex-wrap: wrap; gap: 10px;">
   <label>Customer Name:<input id="customerName" type="text" placeholder="Full Name" /></label>
   <label>Address:<input id="customerAddress" type="text" placeholder="Street, City" /></label>
@@ -375,7 +368,6 @@
 </div>
 
     
-    <!-- Items Table -->
     <div class="box">
   <table id="itemsTable" style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-top: 20px;">
   <thead style="background-color: #e3f2fd; color: #003366;">
@@ -385,7 +377,7 @@
       <th style="border: 1px solid #ccc; padding: 8px;">Qty</th>
       <th style="border: 1px solid #ccc; padding: 8px;">Rate (₹)</th>
       <th style="border: 1px solid #ccc; padding: 8px;">Amount (₹)</th>
-      <th style="border: 1px solid #ccc; padding: 8px;">CGST %</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Forward</th> <th style="border: 1px solid #ccc; padding: 8px;">CGST %</th>
       <th style="border: 1px solid #ccc; padding: 8px;">SGST %</th>
       <th style="border: 1px solid #ccc; padding: 8px;">IGST %</th>
       <th style="border: 1px solid #ccc; padding: 8px;">Total (₹)</th>
@@ -399,7 +391,7 @@
       <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Quantity"></td>
       <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter Rate"></td>
       <td class="amount" contenteditable="false" style="border: 1px solid #ccc; text-align: right;">0.00</td>
-      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter CGST %"></td>
+      <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Forward"></td> <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter CGST %"></td>
       <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter SGST %"></td>
       <td contenteditable style="border: 1px solid #ccc;" data-placeholder="Enter IGST %"></td>
       <td class="total" contenteditable="false" style="border: 1px solid #ccc; text-align: right;">0.00</td>
@@ -413,19 +405,16 @@
   <button class="add-btn" onclick="addRow()">+ Add Item</button>
 </div>
 
-    <!-- Totals Section -->
     <div class="box totals">
   <p>Sub Total: <input type="number" id="subTotal" value="0" readonly /></p>
   <p>CGST Total: <input type="number" id="cgstTotal" value="0" readonly /></p>
   <p>SGST Total: <input type="number" id="sgstTotal" value="0" readonly /></p>
-  <p>IGST Total: <input type="number" id="igstTotal" value="0" readonly /></p> <!-- ✅ IGST Added -->
-  <p>Grand Total: <input type="number" id="grandTotal" value="0" readonly /></p>
+  <p>IGST Total: <input type="number" id="igstTotal" value="0" readonly /></p> <p>Grand Total: <input type="number" id="grandTotal" value="0" readonly /></p>
   <p><strong>Total in Words:</strong> <span id="totalInWords"></span></p>
 </div>
 
 
 
-    <!-- Buttons -->
     <div class="btn-section">
       <button onclick="printInvoice()">Print Invoice</button>
       <button onclick="shareOnWhatsApp()">Share via WhatsApp</button>
@@ -449,23 +438,16 @@
   </div>
 </div>
   <section id="invoicePrint" aria-hidden="true" style="color: #003366; font-family: 'Arial', sans-serif;">
- <!-- Full Header Section -->
-<!-- 🖼️ Top Centered Logo -->
-
-
-<!-- 🔳 Invoice Header Section -->
-<div style="display: flex; justify-content: space-between; align-items: center;
+ <div style="display: flex; justify-content: space-between; align-items: center;
   font-family: Arial, sans-serif; background: #ffffff; padding: 10px 20px;
   border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1);">
 
-  <!-- LEFT: State / PAN -->
   <div style="width: 25%; font-size: 13px; color: #000;">
   <div style="white-space: nowrap;"><strong>State Name:</strong> Tamil Nadu - 33</div>
   <div style="white-space: nowrap;"><strong>GSTIN No. :</strong> 33AFEPA0003N1Z6</div>
   <div style="white-space: nowrap;"><strong>PAN No :</strong> AFEPA0003N</div>
 
   </div>
-  <!-- CENTER: Company Info -->
   <div style="width: 50%; text-align: center;">
   <div style="background: #000; color: white; display: inline-block; padding: 2px 10px;
               font-size: 12px; margin-bottom: 5px;">GST INVOICE</div>
@@ -483,7 +465,6 @@
     <div style="font-size: 13px; color: #004080;">s.ameerevershine@yahoo.com</div>
   </div>
 
-  <!-- RIGHT: Contact -->
   <div style="font-size: 13px; color: #000; text-align: right;">
     <div><strong>Phone :</strong> 0431-2708130</div>
     <div><strong>Mobile:</strong> 94436 45996</div>
@@ -498,12 +479,10 @@
 
 
 
-<!-- Customer + Invoice Info -->
 <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 14px;">
   <tbody>
     <tr>
-      <!-- Left: Customer Info with Delivery Address same as Customer Address -->
-<td style="width: 50%; border: 1px solid #999; vertical-align: top; padding: 8px; font-size: 14px; line-height: 1.6;">
+      <td style="width: 50%; border: 1px solid #999; vertical-align: top; padding: 8px; font-size: 14px; line-height: 1.6;">
   <strong>To. M/s:</strong> <span id="pr_customerName"></span><br />
     <strong>Delivery Address:</strong><br />
 
@@ -515,7 +494,6 @@
 </td>
 
 
-      <!-- Right: Invoice Info -->
       <td style="width: 50%; border: 1px solid #999; vertical-align: top; padding: 8px;">
         <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
           <tr>
@@ -560,7 +538,6 @@
 
 
 
-  <!-- Items -->
   <table class="items" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
   <thead style="background-color: #f2f2f2;">
     <tr style="border: 1px solid #ccc;">
@@ -569,20 +546,18 @@
       <th>Qty</th>
       <th>Rate (₹)</th>
       <th>Amount (₹)</th>
-      <th>CGST %</th>
+      <th>Forward</th> <th>CGST %</th>
       <th>SGST %</th>
-      <th>IGST %</th> <!-- ✅ New IGST Column -->
+      <th>IGST %</th>
       <th>Total (₹)</th>
     </tr>
   </thead>
   <tbody id="pr_itemsBody" style="text-align: center;">
-    <!-- Rows inserted dynamically -->
-  </tbody>
+    </tbody>
 </table>
 
 
-  <!-- Totals -->
- <table class="totals" style="width: 100%; font-size: 16px; border-collapse: collapse;">
+  <table class="totals" style="width: 100%; font-size: 16px; border-collapse: collapse;">
   <tbody>
     <tr>
       <td style="text-align: right; padding: 8px;">Sub Total:</td>
@@ -603,20 +578,16 @@
       </td>
     </tr>
     <tr>
-      <td style="text-align: right; padding: 8px;">IGST Total:</td> <!-- ✅ NEW IGST Row -->
-      <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
+      <td style="text-align: right; padding: 8px;">IGST Total:</td> <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
         ₹ <span id="pr_igstTotal"></span>
       </td>
     </tr>
 
-    <!-- ✅ Final Row -->
     <tr style="font-weight: bold;">
-      <!-- Left: Total in Words -->
       <td style="background-color: #f2f7ff; padding: 10px; vertical-align: top; text-align: left;">
         <span id="pr_totalInWords" style="display: inline-block; margin-top: 4px;"></span>
       </td>
 
-      <!-- Right: Grand Total -->
       <td style="background-color: #cce0ff; padding: 10px; text-align: right; vertical-align: top;">
         <strong>₹ <span id="pr_grandTotal"></span></strong>
       </td>
@@ -625,17 +596,14 @@
 </table>
 
 
- <!-- Bank & Signature Row -->
-<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-top: 20px;">
+ <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-top: 20px;">
 
-  <!-- Bank Details (Left) -->
   <div style="flex: 1; text-align: left; font-size: 12px; color: #333; background: #ffffff; border-radius: 8px; padding: 10px 15px; border: 1px solid #d9e6f2;">
     <p style="margin: 4px 0; font-size: 12px;"><span style="font-weight: bold;">Bank Name:</span> KARNATAKA BANK</p>
     <p style="margin: 4px 0; font-size: 12px;"><span style="font-weight: bold;">Account No:</span> 7617000600109401</p>
     <p style="margin: 4px 0; font-size: 12px;"><span style="font-weight: bold;">IFSC Code:</span> KARB0000761</p>
   </div>
 
-  <!-- Authorized Signature (Right) -->
   <div style="flex: 1; text-align: right;">
     <div style="font-weight: bold; margin-bottom: 10px;">For Evershine Plastics</div>
     <img src="evershine.png" alt="Authorized Signature" style="max-height: 80px;" />
@@ -690,15 +658,6 @@
   }
 </style>
 
-<!--
-  Make sure your HTML has:
-  - A table with id="itemsTable" and a tbody inside it
-  - Input fields with ids: invoiceNo, invoiceDate, placeOfSupply, gstinSeller, panNo, customerEmail,
-    customerName, customerAddress, customerState, gstinBuyer, customerMobile,
-    subTotal, cgstTotal, sgstTotal, grandTotal
-  - A div with id="historySection" containing a child with id="historyContent" for history display
--->
-
 <script>
   // Add new item row
   function addRow() {
@@ -706,14 +665,12 @@
   const row = document.createElement('tr');
   row.innerHTML = `
     <td contenteditable data-placeholder="Enter Product Name"></td>
-    <td style="pointer-events: none; background-color: #f0f0f0;">3926</td> <!-- Fixed HSN -->
-    <td contenteditable data-placeholder="Enter Quantity"></td>
+    <td style="pointer-events: none; background-color: #f0f0f0;">3926</td> <td contenteditable data-placeholder="Enter Quantity"></td>
     <td contenteditable data-placeholder="Enter Rate"></td>
-    <td class="amount" contenteditable="false"></td>
-    <td contenteditable data-placeholder="Enter CGST %"></td>
+    <td class="amount" contenteditable="false">0.00</td>
+    <td contenteditable data-placeholder="Forward"></td> <td contenteditable data-placeholder="Enter CGST %"></td>
     <td contenteditable data-placeholder="Enter SGST %"></td>
-    <td contenteditable data-placeholder="Enter IGST %"></td> <!-- ✅ IGST Added -->
-    <td class="total" contenteditable="false"></td>
+    <td contenteditable data-placeholder="Enter IGST %"></td> <td class="total" contenteditable="false">0.00</td>
     <td><button class="delete-btn" onclick="deleteRow(this)" title="Delete Row">X</button></td>
   `;
   tbody.appendChild(row);
@@ -739,13 +696,14 @@
   rows.forEach(row => {
     const qty = parseFloat(row.cells[2].innerText) || 0;
     const rate = parseFloat(row.cells[3].innerText) || 0;
-    const cgstPercent = parseFloat(row.cells[5].innerText) || 0;
-    const sgstPercent = parseFloat(row.cells[6].innerText) || 0;
-    const igstPercent = parseFloat(row.cells[7].innerText) || 0;
+    // Updated indexing due to Forward column (Forward is index 5)
+    const cgstPercent = parseFloat(row.cells[6].innerText) || 0;
+    const sgstPercent = parseFloat(row.cells[7].innerText) || 0;
+    const igstPercent = parseFloat(row.cells[8].innerText) || 0;
 
     if (![qty, rate].every(isValidNumber)) {
-      row.querySelector('.amount').innerText = '';
-      row.querySelector('.total').innerText = '';
+      row.querySelector('.amount').innerText = '0.00';
+      row.querySelector('.total').innerText = '0.00';
       return;
     }
 
@@ -848,10 +806,11 @@
         qty: cells[2]?.innerText.trim() || '',
         rate: cells[3]?.innerText.trim() || '',
         amount: cells[4]?.innerText.trim() || '',
-        cgst: cells[5]?.innerText.trim() || '',
-        sgst: cells[6]?.innerText.trim() || '',
-        igst: cells[7]?.innerText.trim() || '',
-        total: cells[8]?.innerText.trim() || ''
+        forward: cells[5]?.innerText.trim() || '', // Added
+        cgst: cells[6]?.innerText.trim() || '',
+        sgst: cells[7]?.innerText.trim() || '',
+        igst: cells[8]?.innerText.trim() || '',
+        total: cells[9]?.innerText.trim() || ''
       });
     });
 
@@ -960,7 +919,7 @@ function generateInvoiceEmail() {
   const itemName = firstRow.cells[0].innerText.trim() || 'N/A';
   const qty = firstRow.cells[2].innerText.trim() || 'N/A';
   const rate = firstRow.cells[3].innerText.trim() || 'N/A';
-  const total = firstRow.cells[7].innerText.trim() || 'N/A';
+  const total = firstRow.cells[9].innerText.trim() || 'N/A'; // Corrected index for total
 
   const message = `
 Dear ${customerName},
