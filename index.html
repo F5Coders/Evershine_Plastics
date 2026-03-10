@@ -407,7 +407,7 @@
 
     <div class="box totals">
   <p>Sub Total: <input type="number" id="subTotal" value="0" readonly /></p>
-  <p>CGST Total: <input type="number" id="cgstTotal" value="0" readonly /></p>
+  <p>Forward: <input type="number" id="forwardTotal" value="0" /></p> <p>CGST Total: <input type="number" id="cgstTotal" value="0" readonly /></p>
   <p>SGST Total: <input type="number" id="sgstTotal" value="0" readonly /></p>
   <p>IGST Total: <input type="number" id="igstTotal" value="0" readonly /></p> <p>Grand Total: <input type="number" id="grandTotal" value="0" readonly /></p>
   <p><strong>Total in Words:</strong> <span id="totalInWords"></span></p>
@@ -566,6 +566,11 @@
       </td>
     </tr>
     <tr>
+      <td style="text-align: right; padding: 8px;">Forward:</td> <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
+        ₹ <span id="pr_forwardTotal"></span>
+      </td>
+    </tr>
+    <tr>
       <td style="text-align: right; padding: 8px;">CGST Total:</td>
       <td style="background-color: #e8f0ff; text-align: right; padding: 8px;">
         ₹ <span id="pr_cgstTotal"></span>
@@ -691,12 +696,12 @@
 
   function calculateTotals() {
   let subTotal = 0, cgstTotal = 0, sgstTotal = 0, igstTotal = 0, grandTotal = 0;
+  let forwardTotal = parseFloat(document.getElementById('forwardTotal').value) || 0; // ✅ Get Forward Value
 
   const rows = document.querySelectorAll('#itemsTable tbody tr');
   rows.forEach(row => {
     const qty = parseFloat(row.cells[2].innerText) || 0;
     const rate = parseFloat(row.cells[3].innerText) || 0;
-    // Updated indexing due to Forward column (Forward is index 5)
     const cgstPercent = parseFloat(row.cells[6].innerText) || 0;
     const sgstPercent = parseFloat(row.cells[7].innerText) || 0;
     const igstPercent = parseFloat(row.cells[8].innerText) || 0;
@@ -728,17 +733,20 @@
   document.getElementById('cgstTotal').value = cgstTotal.toFixed(2);
   document.getElementById('sgstTotal').value = sgstTotal.toFixed(2);
 
-  // 👉 Add this only if you have IGST field in the totals section
   const igstTotalField = document.getElementById('igstTotal');
   if (igstTotalField) {
     igstTotalField.value = igstTotal.toFixed(2);
   }
 
+  // ✅ Add Forward to Grand Total
+  grandTotal += forwardTotal;
+
   document.getElementById('grandTotal').value = grandTotal.toFixed(2);
   document.getElementById('totalInWords').innerText = convertNumberToWords(grandTotal);
 }
 
-
+  // ✅ Recalculate if Forward changes
+  document.getElementById('forwardTotal').addEventListener('input', calculateTotals);
 
   document.querySelector('#itemsTable tbody').addEventListener('input', (e) => {
     if (e.target.isContentEditable) {
@@ -752,7 +760,7 @@
       'invoiceNo', 'invoiceDate', 'placeOfSupply', 'gstinSeller', 'panNo',
       'customerEmail', 'customerName', 'customerAddress', 'customerState',
       'gstinBuyer', 'customerMobile', 'stateName', 'stateCode',
-      'subTotal', 'cgstTotal', 'sgstTotal', 'igstTotal', 'grandTotal',
+      'subTotal', 'forwardTotal', 'cgstTotal', 'sgstTotal', 'igstTotal', 'grandTotal',
       'orderNo', 'challanNo', 'transportMode', 'paymentType'
     ].forEach(id => {
       const el = document.getElementById(id);
@@ -789,6 +797,7 @@
       items: [],
       totals: {
         subTotal: document.getElementById('subTotal')?.value || '0',
+        forwardTotal: document.getElementById('forwardTotal')?.value || '0', // Added
         cgstTotal: document.getElementById('cgstTotal')?.value || '0',
         sgstTotal: document.getElementById('sgstTotal')?.value || '0',
         igstTotal: document.getElementById('igstTotal')?.value || '0',
@@ -806,7 +815,7 @@
         qty: cells[2]?.innerText.trim() || '',
         rate: cells[3]?.innerText.trim() || '',
         amount: cells[4]?.innerText.trim() || '',
-        forward: cells[5]?.innerText.trim() || '', // Added
+        forward: cells[5]?.innerText.trim() || '', 
         cgst: cells[6]?.innerText.trim() || '',
         sgst: cells[7]?.innerText.trim() || '',
         igst: cells[8]?.innerText.trim() || '',
@@ -814,10 +823,8 @@
       });
     });
 
-    // ✅ Save to LocalStorage
     localStorage.setItem('savedInvoice', JSON.stringify(invoiceData));
 
-    // ✅ Update bill history
     let billHistory = JSON.parse(localStorage.getItem('billHistory')) || [];
     billHistory.push({
       invoiceNo: invoiceData.invoiceNo,
@@ -845,11 +852,6 @@
 }
 
 
-
-
-  
-
-  // SHARE WHATSAPP: open WhatsApp with invoice summary text
   function shareOnWhatsApp() {
     const invoiceNo = document.getElementById('invoiceNo').value || 'N/A';
     const invoiceDate = document.getElementById('invoiceDate').value || 'N/A';
@@ -864,18 +866,15 @@
     window.open(whatsappUrl, '_blank');
   }
 
-  // Initial setup - add one row and calculate totals
 window.onload = () => {
   const tbody = document.querySelector('#itemsTable tbody');
   const rows = tbody.querySelectorAll('tr');
 
-  // If no rows or only one empty row, add a new row
   if (rows.length === 0 || (rows.length === 1 && rows[0].cells[0].innerText.trim() === "")) {
-    tbody.innerHTML = ''; // Clear just in case
-    addRow(); // Ensure at least one row
+    tbody.innerHTML = ''; 
+    addRow(); 
   }
 
-  // Ensure totals are computed
   calculateTotals();
 };
 
@@ -887,21 +886,18 @@ window.onload = () => {
     return;
   }
 
-  // Compose subject and body
   const subject = encodeURIComponent(`Invoice #${document.getElementById('invoiceNo').value || ''}`);
   
-  // Simple example body - you can customize or generate full invoice text here
   let body = `Dear Customer,%0D%0A%0D%0APlease find your invoice details below:%0D%0A`;
   body += `Invoice No: ${document.getElementById('invoiceNo').value}%0D%0A`;
   body += `Date: ${document.getElementById('invoiceDate').value}%0D%0A`;
   body += `Grand Total: ₹${document.getElementById('grandTotal').value}%0D%0A%0D%0AThank you for your business.%0D%0A`;
 
-  // Build mailto URL
   const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
 
-  // Open in new tab/window
   window.open(mailtoLink, '_blank');
 }
+
 function generateInvoiceEmail() {
   const customerName = document.getElementById('customerName').value || 'Customer';
   const customerEmail = document.getElementById('customerEmail').value || '';
@@ -909,7 +905,6 @@ function generateInvoiceEmail() {
   const companyPhone = '+91 97896 21947';
   const companyEmail = 'f5coders11@gmail.com';
 
-  // Get first item details from the table
   const firstRow = document.querySelector('#itemsTable tbody tr');
   if (!firstRow) {
     alert('No items found in the invoice!');
@@ -919,7 +914,7 @@ function generateInvoiceEmail() {
   const itemName = firstRow.cells[0].innerText.trim() || 'N/A';
   const qty = firstRow.cells[2].innerText.trim() || 'N/A';
   const rate = firstRow.cells[3].innerText.trim() || 'N/A';
-  const total = firstRow.cells[9].innerText.trim() || 'N/A'; // Corrected index for total
+  const total = firstRow.cells[9].innerText.trim() || 'N/A'; 
 
   const message = `
 Dear ${customerName},
@@ -960,14 +955,14 @@ function openGmailCompose() {
 
   window.open(mailtoUrl, '_blank');
 }
-// Populate hidden print template with live invoice data
+
 function populatePrintInvoice() {
   const fields = [
   'invoiceNo', 'invoiceDate', 'stateName', 'stateCode', 'gstinSeller', 'panNo',
   'customerEmail', 'customerName', 'customerAddress', 'customerState',
   'gstinBuyer', 'customerMobile', 'paymentType',
   'orderNo', 'challanNo', 'transportMode',
-  'vehicleNo', 'supplyDateTime'  // ✅ Newly added fields
+  'vehicleNo', 'supplyDateTime' 
 ];
 
 
@@ -980,21 +975,20 @@ function populatePrintInvoice() {
     }
   });
 
-  // Populate items table in print section
 const body = document.getElementById('pr_itemsBody');
 if (!body) return;
 body.innerHTML = '';
 
 document.querySelectorAll('#itemsTable tbody tr').forEach(row => {
-  const cells = Array.from(row.cells).slice(0, -1).map(cell => cell.innerText.trim()); // 👈 skip last column
-  if (!cells[0]) return; // skip empty rows
+  const cells = Array.from(row.cells).slice(0, -1).map(cell => cell.innerText.trim()); 
+  if (!cells[0]) return; 
   const tr = document.createElement('tr');
   tr.innerHTML = cells.map(cell => `<td>${cell || ''}</td>`).join('');
   body.appendChild(tr);
 });
 
-// Totals
-['subTotal', 'cgstTotal', 'sgstTotal', 'igstTotal', 'grandTotal'].forEach(id => {
+// Totals Population
+['subTotal', 'forwardTotal', 'cgstTotal', 'sgstTotal', 'igstTotal', 'grandTotal'].forEach(id => {
   const src = document.getElementById(id);
   const dst = document.getElementById('pr_' + id);
   if (src && dst) {
@@ -1002,7 +996,6 @@ document.querySelectorAll('#itemsTable tbody tr').forEach(row => {
     if (!isNaN(val)) val = parseFloat(val).toFixed(2);
     dst.innerText = val;
 
-    // 👇 Add total in words for grandTotal
     if (id === 'grandTotal') {
       const words = convertNumberToWords(parseFloat(val) || 0);
 
@@ -1016,17 +1009,15 @@ document.querySelectorAll('#itemsTable tbody tr').forEach(row => {
 });
 
 
-  // Grand Total in Words with paise
   const grandTotal = parseFloat(document.getElementById('grandTotal').value || "0");
   const words = convertNumberToWords(grandTotal);
   document.getElementById("totalInWords").innerText = words;
 }
 
 
-// Called on clicking "Print Invoice" button
 function printInvoice() {
-  populatePrintInvoice();  // Fill print template with data
-  window.print();          // Open print dialog
+  populatePrintInvoice();  
+  window.print();          
 }
 function generateInvoiceNumber() {
   let lastInvoice = localStorage.getItem("lastInvoiceNo");
