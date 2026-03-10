@@ -407,7 +407,7 @@
 
     <div class="box totals">
   <p>Sub Total: <input type="number" id="subTotal" value="0" readonly /></p>
-  <p>Forward: <input type="number" id="forwardTotal" value="0" /></p> <p>CGST Total: <input type="number" id="cgstTotal" value="0" readonly /></p>
+  <p>Forward: <input type="number" id="forwardTotal" value="0" readonly /></p> <p>CGST Total: <input type="number" id="cgstTotal" value="0" readonly /></p>
   <p>SGST Total: <input type="number" id="sgstTotal" value="0" readonly /></p>
   <p>IGST Total: <input type="number" id="igstTotal" value="0" readonly /></p> <p>Grand Total: <input type="number" id="grandTotal" value="0" readonly /></p>
   <p><strong>Total in Words:</strong> <span id="totalInWords"></span></p>
@@ -696,12 +696,13 @@
 
   function calculateTotals() {
   let subTotal = 0, cgstTotal = 0, sgstTotal = 0, igstTotal = 0, grandTotal = 0;
-  let forwardTotal = parseFloat(document.getElementById('forwardTotal').value) || 0; // ✅ Get Forward Value
+  let totalForwardValue = 0; // FIXED: Added this to track column forward sum
 
   const rows = document.querySelectorAll('#itemsTable tbody tr');
   rows.forEach(row => {
     const qty = parseFloat(row.cells[2].innerText) || 0;
     const rate = parseFloat(row.cells[3].innerText) || 0;
+    const forwardVal = parseFloat(row.cells[5].innerText) || 0; // FIXED: Grab value from Forward column
     const cgstPercent = parseFloat(row.cells[6].innerText) || 0;
     const sgstPercent = parseFloat(row.cells[7].innerText) || 0;
     const igstPercent = parseFloat(row.cells[8].innerText) || 0;
@@ -723,6 +724,7 @@
     row.querySelector('.total').innerText = total.toFixed(2);
 
     subTotal += amount;
+    totalForwardValue += forwardVal; // FIXED: sum up the forward column values
     cgstTotal += cgstAmount;
     sgstTotal += sgstAmount;
     igstTotal += igstAmount;
@@ -730,6 +732,7 @@
   });
 
   document.getElementById('subTotal').value = subTotal.toFixed(2);
+  document.getElementById('forwardTotal').value = totalForwardValue.toFixed(2); // FIXED: Update the bottom field
   document.getElementById('cgstTotal').value = cgstTotal.toFixed(2);
   document.getElementById('sgstTotal').value = sgstTotal.toFixed(2);
 
@@ -738,15 +741,12 @@
     igstTotalField.value = igstTotal.toFixed(2);
   }
 
-  // ✅ Add Forward to Grand Total
-  grandTotal += forwardTotal;
+  // Add the forward sum to grand total
+  grandTotal += totalForwardValue;
 
   document.getElementById('grandTotal').value = grandTotal.toFixed(2);
   document.getElementById('totalInWords').innerText = convertNumberToWords(grandTotal);
 }
-
-  // ✅ Recalculate if Forward changes
-  document.getElementById('forwardTotal').addEventListener('input', calculateTotals);
 
   document.querySelector('#itemsTable tbody').addEventListener('input', (e) => {
     if (e.target.isContentEditable) {
@@ -797,7 +797,7 @@
       items: [],
       totals: {
         subTotal: document.getElementById('subTotal')?.value || '0',
-        forwardTotal: document.getElementById('forwardTotal')?.value || '0', // Added
+        forwardTotal: document.getElementById('forwardTotal')?.value || '0', 
         cgstTotal: document.getElementById('cgstTotal')?.value || '0',
         sgstTotal: document.getElementById('sgstTotal')?.value || '0',
         igstTotal: document.getElementById('igstTotal')?.value || '0',
